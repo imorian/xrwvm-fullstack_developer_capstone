@@ -48,9 +48,12 @@ def registration(request):
     email_exist = User.objects.filter(email=email).exists()
 
     if username_exist or email_exist:
-        error_message = "Email already in use"
-        if email_exist else "Already Registered"
+        if email_exist:
+            error_message = "Email already in use"
+        else:
+            error_message = "Already Registered"
         return JsonResponse({"userName": username, "error": error_message})
+
 
     user = User.objects.create_user(
         username=username, first_name=first_name, last_name=last_name,

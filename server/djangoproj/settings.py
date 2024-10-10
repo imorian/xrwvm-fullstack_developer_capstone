@@ -1,4 +1,7 @@
+from pathlib import Path
 import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -8,6 +11,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     os.getenv('DJANGO_CSRF_TRUSTED_ORIGIN'),
 ]
+
 # Ensure proper indentation and shorter lines for PEP 8 compliance
 INSTALLED_APPS = [
     'djangoapp.apps.DjangoappConfig',
