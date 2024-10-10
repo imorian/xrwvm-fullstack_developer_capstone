@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
+
 @csrf_exempt
 def login_user(request):
     data = json.loads(request.body)
@@ -24,11 +25,13 @@ def login_user(request):
         data = {"userName": username, "status": "Authenticated"}
     return JsonResponse(data)
 
+
 def logout_request(request):
     username = request.user.username if request.user.is_authenticated else ""
     logout(request)
     data = {"userName": username}
     return JsonResponse(data)
+
 
 @csrf_exempt
 def registration(request):

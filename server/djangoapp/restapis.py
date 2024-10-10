@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 backend_url = os.getenv('backend_url', default="http://localhost:3030")
-sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://localhost:5050")
+sentiment_analyzer_url = 
+os.getenv('sentiment_analyzer_url', default="http://localhost:5050")
 
 
 def get_request(endpoint, **kwargs):
@@ -27,7 +28,8 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(review_text):
     try:
-        response = requests.post(sentiment_analyzer_url, json={"review": review_text})
+        response = requests.post(sentiment_analyzer_url,
+        json={"review": review_text})
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
