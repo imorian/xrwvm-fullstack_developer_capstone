@@ -39,7 +39,6 @@ def analyze_review_sentiments(review_text):
         return None
 
 
-
 def post_review(data):
     try:
         response = requests.post(backend_url + "/insert_review", json=data)
