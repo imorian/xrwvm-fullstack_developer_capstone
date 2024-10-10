@@ -72,6 +72,7 @@ def get_cars(request):
     ]
     return JsonResponse({"CarModels": cars})
 
+
 # Create a `get_dealerships by state` view to render the dealerships by state
 def get_dealerships(request, state="All"):
     endpoint = "/fetchDealers" if state == "All" else f"/fetchDealers/{state}"
