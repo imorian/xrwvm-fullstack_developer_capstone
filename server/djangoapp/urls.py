@@ -20,11 +20,19 @@ urlpatterns = [
 
     # Paths to get dealers
     path('get_dealers', views.get_dealerships, name='get_dealers'),
-    path('get_dealers/<str:state>', views.get_dealerships, name='get_dealers_by_state'),
+    path(
+        'get_dealers/<str:state>',
+        views.get_dealerships,
+        name='get_dealers_by_state',
+    ),
 
-    # Path for dealer reviews
-    path('reviews/dealer/<int:dealer_id>', views.get_dealer_reviews, name='dealer_details'),
+    # Path for dealer reviews view
+    path(
+        'reviews/dealer/<int:dealer_id>',
+        views.get_dealer_reviews,
+        name='dealer_details',
+    ),
 
-    # Path for adding a review
+    # Path to add a review
     path('add_review', views.add_review, name='add_review'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
