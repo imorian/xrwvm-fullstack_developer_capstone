@@ -1,12 +1,13 @@
+import os
+
 ALLOWED_HOSTS = [
     'localhost',
-    'https://silviancedru-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    os.getenv('DJANGO_ALLOWED_HOST'),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://silviancedru-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    os.getenv('DJANGO_CSRF_TRUSTED_ORIGIN'),
 ]
-
 # Ensure proper indentation and shorter lines for PEP 8 compliance
 INSTALLED_APPS = [
     'djangoapp.apps.DjangoappConfig',

@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User  # Added here
@@ -49,7 +48,8 @@ def registration(request):
     email_exist = User.objects.filter(email=email).exists()
 
     if username_exist or email_exist:
-        error_message = "Email already in use" if email_exist else "Already Registered"
+        error_message = "Email already in use"
+        if email_exist else "Already Registered"
         return JsonResponse({"userName": username, "error": error_message})
 
     user = User.objects.create_user(
@@ -64,11 +64,11 @@ def get_cars(request):
     if not CarMake.objects.exists():
         initiate()
     car_models = CarModel.objects.select_related('car_make')
-    cars = [{"CarModel": model.name, "CarMake": model.car_make.name} for model in car_models]
+    cars = [{"CarModel": model.name, "CarMake": model.car_make.name}
+    for model in car_models]
     return JsonResponse({"CarModels": cars})
 
 
-# Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request, state="All"):
     endpoint = "/fetchDealers" if state == "All" else f"/fetchDealers/{state}"
     dealerships = get_request(endpoint)
@@ -103,7 +103,7 @@ def add_review(request):
         try:
             post_review(data)
             return JsonResponse({"status": 200})
-        except:
+        except Exception as e:
             return JsonResponse(
                 {"status": 401, "message": "Error in posting review"})
     return JsonResponse({"status": 403, "message": "Unauthorized"})
